@@ -1,0 +1,46 @@
+{
+  "name": "beam-cli",
+  "version": "0.0.1",
+  "author": "",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "app/*",
+    "lib/*"
+  ],
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"app/**/*.ts\" \"lib/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/app/cli/main",
+    "lint": "eslint \"{src,app,lib,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": ".",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/app/",
+      "<rootDir>/lib/"
+    ]
+  }
+}
