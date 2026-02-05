@@ -39,7 +39,7 @@ export function getBehaviours(http: HttpClient): Behaviours {
 
   return new Behaviours(http, fullURL);
 }
-
+```
 
 RequestsService (Discovery + State)
 Responsibilities
@@ -55,7 +55,7 @@ Maintain state for CLI output and tooling: loading, requests list, active reques
 Persist drafts and cached results using a CLI-appropriate store (filesystem cache recommended for Node CLIs; localStorage only applies to browser contexts).
 
 Example
-ts
+```ts
 
 this.behaviours.ready(() => {
   this.behaviours.behaviours({}).subscribe({
@@ -65,7 +65,7 @@ this.behaviours.ready(() => {
     error: () => this.requests.set([])
   });
 });
-
+```
 
 BehaviourService (Execution)
 Responsibilities
@@ -82,7 +82,7 @@ Return/print formatted output suitable for terminals (pretty JSON, raw output, o
 Example
 
 
-
+```ts
 send(requestName: string): void {
   const fn = this.behaviours.getBehaviour(requestName);
 
@@ -91,6 +91,7 @@ send(requestName: string): void {
     error: (error) => this.errorSignal.set(error)
   });
 }
+```
 
 CLI Capabilities
 List behaviours: Auto-scan backend (/behaviours) and display available commands (e.g., beam list).
@@ -104,9 +105,10 @@ Exports (optional): Support file output (e.g., --out result.json) for scripting 
 WebSocket (optional): Support event-based behaviours and stream events to stdout.
 
 Configuration
-ts
+```ts
 
 export interface BehavioursConfig {
   baseURL: string; // e.g. http://localhost:3000
   prefix: string;  // e.g. /api
 }
+```
