@@ -29,7 +29,7 @@ text
 
 Goal: create a singleton Behaviours instance using runtime CLI config (baseURL + prefix).
 
-```ts
+```
 export function getBehaviours(http: HttpClient): Behaviours {
   const config = inject(TEST_BEHAVIOURS_UI_CONFIG);
 
@@ -56,7 +56,6 @@ Persist drafts and cached results using a CLI-appropriate store (filesystem cach
 
 Example
 ```ts
-
 this.behaviours.ready(() => {
   this.behaviours.behaviours({}).subscribe({
     next: (res) => {
@@ -106,7 +105,6 @@ WebSocket (optional): Support event-based behaviours and stream events to stdout
 
 Configuration
 ```ts
-
 export interface BehavioursConfig {
   baseURL: string; // e.g. http://localhost:3000
   prefix: string;  // e.g. /api
