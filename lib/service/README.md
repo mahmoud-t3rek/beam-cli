@@ -26,7 +26,8 @@ BehaviourService: CLI executor; resolves a behaviour runner by name and executes
 #### Initialization(Factory Provider)
 Goal: create a singleton Behaviours instance using runtime CLI config (baseURL + prefix).
 
-ts
+
+
 export function getBehaviours(http: HttpClient): Behaviours {
   const config = inject(TEST_BEHAVIOURS_UI_CONFIG);
 
@@ -36,8 +37,11 @@ export function getBehaviours(http: HttpClient): Behaviours {
 
   return new Behaviours(http, fullURL);
 }
+
+
 RequestsService (Discovery + State)
 Responsibilities
+
 Wait for engine readiness before running any CLI command.
 
 Fetch behaviour registry from /behaviours (powers beam list and validation for beam run <name>).
@@ -50,6 +54,7 @@ Persist drafts and cached results using a CLI-appropriate store (filesystem cach
 
 Example
 ts
+
 this.behaviours.ready(() => {
   this.behaviours.behaviours({}).subscribe({
     next: (res) => {
@@ -58,6 +63,8 @@ this.behaviours.ready(() => {
     error: () => this.requests.set([])
   });
 });
+
+
 BehaviourService (Execution)
 Responsibilities
 Resolve behaviour runner: behaviours.getBehaviour(name).
@@ -71,7 +78,9 @@ Push success/error + execution timing back into RequestsService.
 Return/print formatted output suitable for terminals (pretty JSON, raw output, or quiet mode), and set exit codes appropriately.
 
 Example
-ts
+
+
+
 send(requestName: string): void {
   const fn = this.behaviours.getBehaviour(requestName);
 
@@ -80,6 +89,7 @@ send(requestName: string): void {
     error: (error) => this.errorSignal.set(error)
   });
 }
+
 CLI Capabilities
 List behaviours: Auto-scan backend (/behaviours) and display available commands (e.g., beam list).
 
@@ -93,6 +103,7 @@ WebSocket (optional): Support event-based behaviours and stream events to stdout
 
 Configuration
 ts
+
 export interface BehavioursConfig {
   baseURL: string; // e.g. http://localhost:3000
   prefix: string;  // e.g. /api
