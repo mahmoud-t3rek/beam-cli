@@ -16,18 +16,20 @@ text
       ↓
 [ Backend API / WebSocket ]
 
+
 ### Key Concepts
-js-behaviours: Core engine that discovers behaviours and returns executable handlers.
 
-RequestsService: CLI state/cache manager; loads the behaviours list, stores parameter drafts, caches responses, and exposes “current run” metadata.
+- **js-behaviours**: Core engine that discovers behaviours and returns executable handlers.
+- **RequestsService**: CLI state/cache manager; loads the behaviours list, stores parameter drafts, caches responses, and exposes “current run” metadata.
+- **BehaviourService**: CLI executor; resolves a behaviour runner by name and executes it with parsed CLI parameters, streaming success/error back to the store.
 
-BehaviourService: CLI executor; resolves a behaviour runner by name and executes it with parsed CLI parameters, streaming success/error back to the store.
+---
 
-#### Initialization(Factory Provider)
+### Initialization (Factory Provider)
+
 Goal: create a singleton Behaviours instance using runtime CLI config (baseURL + prefix).
 
-
-
+```ts
 export function getBehaviours(http: HttpClient): Behaviours {
   const config = inject(TEST_BEHAVIOURS_UI_CONFIG);
 
