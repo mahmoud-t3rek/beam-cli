@@ -1,4 +1,5 @@
 # Backend 
+create simple beamjs application in js
 
 ## Prompt 
 This application hosts the core logic and integrates with the BeamJS framework.
@@ -16,19 +17,8 @@ This application hosts the core logic and integrates with the BeamJS framework.
 
 The main entry point of the application is:
 
-
 ./server.js 
 
 This file is responsible for initializing the server and running the application in either single or clustered mode
 
-## Clustering
-
-The server supports Node.js clustering to improve performance by utilizing all available CPU cores:
-
-The master process forks worker processes
-
-Each worker runs an instance of the server
-
-If a worker crashes, it can be restarted automatically
-
-This behavior is similar to how NestJS handles scalable production setups
+it reads env var PORT and starts the server on that port or default port 3000
